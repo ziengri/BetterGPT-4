@@ -59,7 +59,8 @@ export type ModelOptions =
   | 'sage'
   | 'claude-instant'
   | 'claude+'
-  | 'claude-instant-100k';
+  | 'claude-instant-100k'
+  | 'chat-bison-001';
 
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {

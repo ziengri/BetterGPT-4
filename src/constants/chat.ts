@@ -28,6 +28,7 @@ export const modelOptions: ModelOptions[] = [
   'claude-instant',
   'claude+',
   'claude-instant-100k',
+  'chat-bison-001',
 ];
 
 export const defaultModel = 'gpt-3.5-turbo-16k';
@@ -43,6 +44,7 @@ export const modelMaxToken = {
   'claude-instant': 11000,
   'claude+': 11000,
   'claude-instant-100k': 100000,
+  'chat-bison-001': 10000,
 };
 
 export const modelCost = {
@@ -84,6 +86,10 @@ export const modelCost = {
   },
 
   'claude-instant-100k': {
+    prompt: { price: 0.002, unit: 1000 },
+    completion: { price: 0.002, unit: 1000 },
+  },
+  'chat-bison-001': {
     prompt: { price: 0.002, unit: 1000 },
     completion: { price: 0.002, unit: 1000 },
   },
