@@ -13,6 +13,8 @@ import {
   FolderCollection,
 } from '@type/chat';
 
+import { IPRoyal, Banner2 } from '@components/Banners';
+
 const ChatHistoryList = () => {
   const currentChatIndex = useStore((state) => state.currentChatIndex);
   const setChats = useStore((state) => state.setChats);
@@ -176,7 +178,12 @@ const ChatHistoryList = () => {
           <ChatHistory title={title} key={`${title}-${id}`} chatIndex={index} />
         ))}
       </div>
-      <div className='w-full h-10' />
+      {/* IP Royal Referral */}
+      <div className='w-full h-15 display-flex'>
+        <div className='centered-div flex-item'>
+          <IPRoyal />
+        </div>
+      </div>
     </div>
   );
 };

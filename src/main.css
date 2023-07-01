@@ -4,6 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+.centered-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.height-15vh {
+  height: 15vh;
+}
+
+.height-10vh {
+  height: 10vh;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
