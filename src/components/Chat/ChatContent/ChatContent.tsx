@@ -115,11 +115,13 @@ const ChatContent = () => {
               </div>
             )}
           </div>
-          <div className='w-full h-36'>
+          <div className='w-full h-10'>
             <div className='centered-div height-15vh'>
-              <Capsolver />
+              {' '}
+              <Capsolver />{' '}
             </div>
-            <div className='centered-div height-10vh'>
+            {/* Banner 1 */}
+            <div className='centered-div'>
               <Banner1 />
             </div>
           </div>
