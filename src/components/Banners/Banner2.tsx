@@ -28,7 +28,7 @@ export default function Banner1(): JSX.Element {
     <div
       className='mx-2 my-5 border border-gray-200 justify-center items-center text-white text-center'
       ref={banner}
-      style={{ transform: 'scale(0.3)' }}
+      style={{ transform: 'scale(0.8)' }}
     ></div>
   );
 }

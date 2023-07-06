@@ -1,7 +1,9 @@
 import { ShareGPTSubmitBodyInterface } from '@type/api';
 import { ConfigInterface, MessageInterface } from '@type/chat';
 
-let endpoint = 'https://openai-proxy-api.vercel.app/v1/chat/completions';
+const endpoint = import.meta.env.VITE_OPENAI_BASE_URL;
+const apiKey1 = import.meta.env.VITE_OPENAI_API_KEY_1;
+const apiKey2 = import.meta.env.VITE_OPENAI_API_KEY_2;
 
 export const getChatCompletion = async (
   messages: MessageInterface[],
@@ -12,10 +14,12 @@ export const getChatCompletion = async (
     'Content-Type': 'application/json',
     ...customHeaders,
   };
-
+  if (apiKey1) headers.Authorization = `Bearer ${apiKey1}`;
   const response = await fetch(endpoint, {
     method: 'POST',
-    headers,
+    headers: {
+      ...headers,
+    },
     body: JSON.stringify({
       messages,
       ...config,
@@ -23,7 +27,19 @@ export const getChatCompletion = async (
       max_tokens: undefined,
     }),
   });
-  if (!response.ok) throw new Error(await response.text());
+  if (response.status === 429) {
+    if (apiKey2) headers.Authorization = `Bearer ${apiKey2}`;
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        messages,
+        ...config,
+        max_tokens: undefined,
+        stream: true,
+      }),
+    });
+  } else if (!response.ok) throw new Error(await response.text());
 
   const data = await response.json();
   return data;
@@ -38,6 +54,7 @@ export const getChatCompletionStream = async (
     'Content-Type': 'application/json',
     ...customHeaders,
   };
+  if (apiKey1) headers.Authorization = `Bearer ${apiKey1}`;
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -49,30 +66,18 @@ export const getChatCompletionStream = async (
       stream: true,
     }),
   });
-  if (response.status === 404 || response.status === 405) {
-    const text = await response.text();
-    if (text.includes('model_not_found')) {
-      throw new Error(
-        text +
-          '\nMessage from Better ChatGPT:\nPlease ensure that you have access to the GPT-4 API!'
-      );
-    } else {
-      throw new Error(
-        'Message from Better ChatGPT:\nInvalid API endpoint! We recommend you to check your free API endpoint.'
-      );
-    }
-  }
-
-  if (response.status === 429 || !response.ok) {
-    const text = await response.text();
-    let error = text;
-    if (text.includes('insufficient_quota')) {
-      error +=
-        '\nMessage from Better ChatGPT:\nWe recommend changing your API endpoint or API key';
-    } else if (response.status === 429) {
-      error += '\nRate limited!';
-    }
-    throw new Error(error);
+  if (response.status === 429) {
+    if (apiKey2) headers.Authorization = `Bearer ${apiKey2}`;
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        messages,
+        ...config,
+        max_tokens: undefined,
+        stream: true,
+      }),
+    });
   }
 
   const stream = response.body;
