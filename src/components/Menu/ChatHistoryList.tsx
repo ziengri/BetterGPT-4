@@ -180,9 +180,9 @@ const ChatHistoryList = () => {
       </div>
       {/* IP Royal Referral */}
       <div className='w-full h-15 display-flex'>
-        <div className='centered-div flex-item'>
+        {/*<div className='centered-div flex-item'>
           <IPRoyal />
-        </div>
+        </div> */}
       </div>
     </div>
   );
