@@ -139,12 +139,12 @@ export const MaxTokenSlider = ({
   return (
     <div>
       <label className='block text-sm font-medium text-gray-900 dark:text-white'>
-        {t('token.label')}: {_maxToken}
+        {t('token.label')}: {modelMaxToken[_model]}
       </label>
       <input
         type='range'
         ref={inputRef}
-        value={_maxToken}
+        value={modelMaxToken[_model]}
         onChange={(e) => {
           _setMaxToken(Number(e.target.value));
         }}

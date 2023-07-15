@@ -65,7 +65,6 @@ export type ModelOptions =
   | 'gpt-3.5-turbo-16k-openai'
   | 'sage'
   | 'claude-instant'
-  | 'claude+'
   | 'claude-instant-100k'
   | 'chat-bison-001';
 
