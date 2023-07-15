@@ -2,7 +2,7 @@ import React from 'react';
 
 function BannerLink(): JSX.Element {
   return (
-    <a href='https://iproyal.com?r=241410'>
+    <a href='https://iproyal.com?r=free-ai'>
       <img
         style={{ transform: 'scale(0.8)' }}
         alt='banner'
