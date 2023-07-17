@@ -1,9 +1,9 @@
 import { ShareGPTSubmitBodyInterface } from '@type/api';
 import { ConfigInterface, MessageInterface } from '@type/chat';
 
+// Environment variables - remember to define in Vercel
 const endpoint = import.meta.env.VITE_OPENAI_BASE_URL;
-const apiKey1 = import.meta.env.VITE_OPENAI_API_KEY_1;
-const apiKey2 = import.meta.env.VITE_OPENAI_API_KEY_2;
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 export const getChatCompletion = async (
   messages: MessageInterface[],
@@ -14,7 +14,7 @@ export const getChatCompletion = async (
     'Content-Type': 'application/json',
     ...customHeaders,
   };
-  if (apiKey1) headers.Authorization = `Bearer ${apiKey1}`;
+  if (apiKey) headers.Authorization = `Bearer ${apiKey}`;
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -27,19 +27,8 @@ export const getChatCompletion = async (
       max_tokens: undefined,
     }),
   });
-  if (response.status === 429) {
-    if (apiKey2) headers.Authorization = `Bearer ${apiKey2}`;
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        messages,
-        ...config,
-        max_tokens: undefined,
-        stream: true,
-      }),
-    });
-  } else if (!response.ok) throw new Error(await response.text());
+  // Error handling (catch-all)
+  if (!response.ok) throw new Error(await response.text());
 
   const data = await response.json();
   return data;
@@ -54,7 +43,7 @@ export const getChatCompletionStream = async (
     'Content-Type': 'application/json',
     ...customHeaders,
   };
-  if (apiKey1) headers.Authorization = `Bearer ${apiKey1}`;
+  if (apiKey) headers.Authorization = `Bearer ${apiKey}`;
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -66,18 +55,23 @@ export const getChatCompletionStream = async (
       stream: true,
     }),
   });
+
+  /* Handling different response statuses from the API request. */
   if (response.status === 429) {
-    if (apiKey2) headers.Authorization = `Bearer ${apiKey2}`;
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        messages,
-        ...config,
-        max_tokens: undefined,
-        stream: true,
-      }),
-    });
+    throw new Error(
+      'Rate limited. Try again later or choose a different model.'
+    );
+  } else if (response.status === 500) {
+    throw new Error(
+      'Internal server error. Something went wrong on our side. Check back later and try again.'
+    );
+  } else if (!response.ok) {
+    throw new Error(
+      'Status Code: ' +
+        (await response.status) +
+        '/nError Message: ' +
+        (await response.text())
+    );
   }
 
   const stream = response.body;

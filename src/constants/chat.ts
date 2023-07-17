@@ -24,10 +24,8 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4-0613',
   'gpt-3.5-turbo',
   'gpt-3.5-turbo-poe',
-  'gpt-3.5-turbo-openai',
   'gpt-3.5-turbo-16k',
   'gpt-3.5-turbo-16k-poe',
-  'gpt-3.5-turbo-16k-openai',
   'gpt-3.5-turbo-0613',
   'sage',
   'claude-instant',
@@ -46,10 +44,10 @@ export const modelMaxToken = {
   'gpt-4-0613': 7400,
   'gpt-3.5-turbo': 4000,
   'gpt-3.5-turbo-poe': 2800,
-  'gpt-3.5-turbo-openai': 4000,
+
   'gpt-3.5-turbo-16k': 16000,
   'gpt-3.5-turbo-16k-poe': 16000,
-  'gpt-3.5-turbo-16k-openai': 16000,
+
   'gpt-3.5-turbo-0613': 4000,
   'sage': 5200,
   'claude-instant': 11000,
@@ -60,7 +58,7 @@ export const modelMaxToken = {
 
 export const modelCost = {};
 
-export const defaultUserMaxToken = 100000;
+export const defaultUserMaxToken = 0;
 
 export const _defaultChatConfig: ConfigInterface = {
   model: defaultModel,
