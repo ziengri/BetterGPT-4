@@ -64,7 +64,10 @@ export type ModelOptions =
   | 'claude-2-100k'
   | 'claude-instant'
   | 'claude-instant-100k'
-  | 'chat-bison-001';
+  | 'chat-bison-001'
+  | 'llama-2-70b-chat'
+  | 'llama-2-13b-chat'
+  | 'llama-2-7b-chat';
 
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {

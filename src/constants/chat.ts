@@ -32,6 +32,9 @@ export const modelOptions: ModelOptions[] = [
   'claude-2-100k',
   'claude-instant-100k',
   'chat-bison-001',
+  'llama-2-70b-chat',
+  "llama-2-13b-chat",
+  "llama-2-7b-chat"
 ];
 
 export const defaultModel = 'gpt-3.5-turbo-16k';
@@ -52,6 +55,9 @@ export const modelMaxToken = {
   'claude-2-100k': 100000,
   'claude-instant-100k': 100000,
   'chat-bison-001': 10000,
+  'llama-2-70b-chat': 8192,
+  "llama-2-13b-chat": 8192,
+  "llama-2-7b-chat": 8192,
 };
 
 export const modelCost = {};
@@ -63,7 +69,7 @@ export const _defaultChatConfig: ConfigInterface = {
   max_tokens: defaultUserMaxToken,
   temperature: 1,
   presence_penalty: 0,
-  top_p: 1,
+  top_p: 0.95,
   frequency_penalty: 0,
 };
 
