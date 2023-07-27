@@ -12,57 +12,38 @@ const dateString =
 
 export const _defaultSystemMessage =
   import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ??
-  `You are GPT, a large language model trained by OpenAI.
-Carefully heed the user's instructions and follow the user's will. 
+  `Carefully heed the user's instructions and follow the user's will to the best of your ability.
 Respond using Markdown.`;
 
 export const modelOptions: ModelOptions[] = [
-  'gpt-4',
-  'gpt-4-poe',
-  'gpt-4-32k',
-  'gpt-4-32k-poe',
-  'gpt-4-0314',
   'gpt-3.5-turbo',
-  'gpt-3.5-turbo-poe',
-  'gpt-3.5-turbo-16k',
-  'gpt-3.5-turbo-16k-poe',
   'gpt-3.5-turbo-0301',
-  'sage',
-  'claude-instant',
-  'claude-2-100k',
-  'claude-instant-100k',
-  'chat-bison-001',
+  'gpt-3.5-turbo-16k',
+  'llama-2-7b-chat',
+  'llama-2-13b-chat',
   'llama-2-70b-chat',
-  "llama-2-13b-chat",
-  "llama-2-7b-chat"
+  'gpt-4',
+  'gpt-4-0314',
+  'gpt-4-32k',
 ];
 
 export const defaultModel = 'gpt-3.5-turbo-16k';
 
 export const modelMaxToken = {
-  'gpt-4': 7400,
-  'gpt-4-poe': 2100,
+  'gpt-4': 8192,
   'gpt-4-32k': 32768,
-  'gpt-4-32k-poe': 32768,
   'gpt-4-0314': 8192,
-  'gpt-3.5-turbo': 4000,
-  'gpt-3.5-turbo-poe': 2800,
-  'gpt-3.5-turbo-16k': 16000,
-  'gpt-3.5-turbo-16k-poe': 16000,
-  'gpt-3.5-turbo-0301': 4000,
-  'sage': 5200,
-  'claude-instant': 11000,
-  'claude-2-100k': 100000,
-  'claude-instant-100k': 100000,
-  'chat-bison-001': 10000,
+  'gpt-3.5-turbo': 4097,
+  'gpt-3.5-turbo-16k': 16384,
+  'gpt-3.5-turbo-0301': 4097,
   'llama-2-70b-chat': 8192,
-  "llama-2-13b-chat": 8192,
-  "llama-2-7b-chat": 8192,
+  'llama-2-13b-chat': 8192,
+  'llama-2-7b-chat': 8192,
 };
 
 export const modelCost = {};
 
-export const defaultUserMaxToken = 16000;
+export const defaultUserMaxToken = 16384;
 
 export const _defaultChatConfig: ConfigInterface = {
   model: defaultModel,
