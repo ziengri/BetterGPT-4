@@ -19,8 +19,6 @@ export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
   'gpt-3.5-turbo-0301',
   'gpt-3.5-turbo-16k',
-  'llama-2-7b-chat',
-  'llama-2-13b-chat',
   'llama-2-70b-chat',
   'gpt-4',
   'gpt-4-0314',
@@ -37,8 +35,6 @@ export const modelMaxToken = {
   'gpt-3.5-turbo-16k': 16384,
   'gpt-3.5-turbo-0301': 4097,
   'llama-2-70b-chat': 8192,
-  'llama-2-13b-chat': 8192,
-  'llama-2-7b-chat': 8192,
 };
 
 export const modelCost = {};
@@ -50,7 +46,7 @@ export const _defaultChatConfig: ConfigInterface = {
   max_tokens: defaultUserMaxToken,
   temperature: 1,
   presence_penalty: 0,
-  top_p: 0.95,
+  top_p: 1,
   frequency_penalty: 0,
 };
 
