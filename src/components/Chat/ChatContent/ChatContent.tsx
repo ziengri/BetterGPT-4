@@ -13,8 +13,6 @@ import DownloadChat from './DownloadChat';
 import CloneChat from './CloneChat';
 import ShareGPT from '@components/ShareGPT';
 
-import { Capsolver } from '@components/Banners';
-
 const ChatContent = () => {
   const inputRole = useStore((state) => state.inputRole);
   const setError = useStore((state) => state.setError);
@@ -115,21 +113,8 @@ const ChatContent = () => {
               </div>
             )}
           </div>
-          <div className='w-full h-10'>
-            <div className='centered-div height-15vh'>
-              <Capsolver />
-            </div>
-            {/* Banner 1 */}
-            <div className='centered-div flex-content'>
-              <a href='https://iproyal.com?r=241410'>
-                <img
-                  src='https://dashboard.iproyal.com/img/b/728_2.jpg'
-                  alt='IPRoyal.com'
-                />
-              </a>
-            </div>
-          </div>
         </div>
+        <div className='w-full h-5'></div>
       </ScrollToBottom>
     </div>
   );
