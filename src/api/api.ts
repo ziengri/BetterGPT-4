@@ -24,8 +24,10 @@ export const getChatCompletion = async (
       messages,
       ...config,
       model: config.model,
+      allow_fallback: true,
       max_tokens: undefined,
     }),
+    mode: 'cors',
   });
   // Error handling (catch-all)
   if (!response.ok) throw new Error(await response.text());
@@ -52,20 +54,24 @@ export const getChatCompletionStream = async (
       messages,
       ...config,
       max_tokens: undefined,
+      allow_fallback: true,
       stream: true,
     }),
+    mode: 'cors',
   });
 
   /* Handling different response statuses from the API request. */
-  if (response.status === 429) {
-    throw new Error(
-      'Rate limited. Try again later or choose a different model.'
-    );
+  if ((await response.status) === 429) {
+    // Showing rate limit message
+    const responseText = await response.text();
+    throw new Error(JSON.parse(responseText).detail);
   } else if (response.status === 500) {
+    // Internal server error
     throw new Error(
       'Internal server error. Something went wrong on our side. Check back later and try again.'
     );
   } else if (!response.ok) {
+    // All other errors
     throw new Error(
       'Status Code: ' +
         (await response.status) +
