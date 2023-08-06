@@ -64,7 +64,11 @@ export const getChatCompletionStream = async (
   if ((await response.status) === 429) {
     // Showing rate limit message
     const responseText = await response.text();
-    throw new Error(JSON.parse(responseText).detail);
+    try {
+      throw new Error(JSON.parse(responseText).detail);
+    } catch (e) {
+      throw new Error(responseText);
+    }
   } else if (response.status === 500) {
     // Internal server error
     throw new Error(
