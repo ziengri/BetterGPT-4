@@ -57,6 +57,10 @@ export type ModelOptions =
   | 'gpt-3.5-turbo-16k'
   | 'gpt-3.5-turbo'
   | 'llama-2-70b-chat'
+  | 'oasst-sft-6-llama-30b'
+  | 'claude-2'
+  | 'claude-instant'
+  | 'claude-2-100k';
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {
     promptTokens: number;
