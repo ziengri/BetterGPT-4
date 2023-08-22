@@ -26,7 +26,6 @@ export const modelOptions: ModelOptions[] = [
   'oasst-sft-6-llama-30b',
   'claude-2',
   'claude-instant',
-  'claude-2-100k',
 ];
 
 export const defaultModel = 'gpt-3.5-turbo-16k';
@@ -40,9 +39,8 @@ export const modelMaxToken = {
   'gpt-3.5-turbo-0301': 4097,
   'llama-2-70b-chat': 8192,
   'oasst-sft-6-llama-30b': 8192,
-  'claude-2': 10000,
+  'claude-2': 100000,
   'claude-instant': 10000,
-  'claude-2-100k': 100000,
 };
 
 export const modelCost = {};

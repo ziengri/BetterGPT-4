@@ -59,8 +59,7 @@ export type ModelOptions =
   | 'llama-2-70b-chat'
   | 'oasst-sft-6-llama-30b'
   | 'claude-2'
-  | 'claude-instant'
-  | 'claude-2-100k';
+  | 'claude-instant';
 export type TotalTokenUsed = {
   [model in ModelOptions]?: {
     promptTokens: number;
