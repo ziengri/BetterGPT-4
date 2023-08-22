@@ -38,9 +38,8 @@ WORKDIR /home/appuser/app
 
 COPY --chown=appuser:appgroup --from=builder /home/appuser/app/dist ./dist
 
-ENV PORT=3000
-EXPOSE $PORT
+EXPOSE 5001
 
-CMD ["/home/appuser/.yarn/bin/serve", "-s", "dist", "-l", "$PORT"]
+CMD ["/home/appuser/.yarn/bin/serve", "-s", "dist", "-l", "5001"]
 
 
