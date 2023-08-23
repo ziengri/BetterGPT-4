@@ -8,6 +8,7 @@
   "author": "Yvan Lokhmotov <contact@ylokh.xyz>",
   "description": "Play and chat smarter with BetterGPT-4 - an amazing open-source web app with a better UI and more AI models - all for free!",
   "scripts": {
+    "release": "electron-builder",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",

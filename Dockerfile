@@ -14,12 +14,11 @@ RUN yarn config set prefix ~/.yarn && \
 WORKDIR /home/appuser/app
 
 COPY --chown=appuser:appgroup package.json yarn.lock ./
-RUN yarn install --production --frozen-lockfile
-
 COPY --chown=appuser:appgroup . .
 
-RUN /home/appuser/.yarn/bin/vite optimize && \
-  /home/appuser/.yarn/bin/vite build --minify
+RUN npm install && \
+    /home/appuser/.yarn/bin/vite optimize && \
+    /home/appuser/.yarn/bin/vite build --minify
 
 # Stage 2: Run
 FROM node:alpine
