@@ -76,9 +76,14 @@ To get started, simply visit our website at <https://chat.ylokh.xyz/>!
 
 If you'd like to run your own instance of BetterGPT-4, you can easily do so by following these steps:
 
+## Environment Variables
+
+- `VITE_OPENAI_BASE_URL`: Define the link to the chat completions endpoint. If not set it defaults to: `https://api.openai.com/v1/chat/completions`
+- `VITE_OPENAI_API_KEY`: Define your API key here. e.g: `e501e4cfad5aaa30c3d78dbddebaa534`
+
 ## Vercel
 
-One click deploy with Vercel
+One click deploy with Vercel. Remember to set your .env variables as mentioned [here](#environment-variables)
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fyvanlok%2FBetterGPT-4%2Ftree%2Fdev&showOptionalTeamCreation=false)
 
@@ -112,10 +117,26 @@ One click deploy with Vercel
    - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 
 2. Clone this [repository](https://github.com/yvanlok/BetterGPT-4) by running `git clone https://github.com/yvanlok/BetterGPT-4.git`
-3. Navigate into the directory by running `cd BetterChatGPT`
+3. Navigate into the directory by running `cd BetterGPT-4`
 4. Change to this branch: `dev` by running `git checkout dev`
-5. Run `yarn` or `npm install`, depending on whether you have yarn or npm installed.
-6. Launch the app by running `yarn dev` or `npm run dev`
+5. Remember to set your .env variables as mentioned [here](#environment-variables)
+6. Run `yarn` or `npm install`, depending on whether you have yarn or npm installed.
+7. Set your environment variables in the `.env` file.
+8. Launch the app by running `yarn dev` or `npm run dev`
+
+### Running it locally (Docker Compose)
+1. Ensure that you have Docker and docker-compose installed
+    - [Docker](https://docs.docker.com/engine/install/)
+    - [docker-compose](https://docs.docker.com/compose/install/standalone/)
+2. Clone this [repository](https://github.com/yvanlok/BetterGPT-4) by running `git clone https://github.com/yvanlok/BetterGPT-4.git`
+3. Navigate into the directory by running `cd BetterGPT-4`
+4. Change to this branch: `dev` by running `git checkout dev`
+5. Remember to set your .env variables as mentioned [here](#environment-variables)
+6. Run `docker-compose up` to build and run the container!
+
+### Docker Images
+Docker image is available [here](https://hub.docker.com/repository/docker/yvanlokh/bettergpt-4/general)
+
 
 # ⭐️ Star History
 
