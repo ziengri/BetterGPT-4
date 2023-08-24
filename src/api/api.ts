@@ -2,7 +2,9 @@ import { ShareGPTSubmitBodyInterface } from '@type/api';
 import { ConfigInterface, MessageInterface } from '@type/chat';
 
 // Environment variables - remember to define in Vercel
-const endpoint = import.meta.env.VITE_OPENAI_BASE_URL;
+const endpoint =
+  import.meta.env.VITE_OPENAI_BASE_URL ??
+  'https://api.openai.com/v1/chat/completions';
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 export const getChatCompletion = async (
