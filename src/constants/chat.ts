@@ -16,28 +16,31 @@ export const _defaultSystemMessage =
 Respond using Markdown.`;
 
 export const modelOptions: ModelOptions[] = [
-  'gpt-3.5-turbo-0613',
+  'gpt-3.5-turbo',
   'gpt-3.5-turbo-0301',
-  'gpt-3.5-turbo-16k-0613',
+  'gpt-3.5-turbo-16k',
   'gpt-3.5-turbo-16k-0301',
   'llama-2-70b-chat',
   'code-llama-34b-instruct',
   'oasst-sft-6-llama-30b',
-  'gpt-4-0613',
+  'gpt-4',
   'gpt-4-0314',
   'gpt-4-32k',
+  'gpt-4-32k-0314',
   'claude-2',
   'claude-instant',
+  'palm',
 ];
 
-export const defaultModel = 'gpt-3.5-turbo-16k-0613';
+export const defaultModel = 'gpt-3.5-turbo-16k';
 
 export const modelMaxToken = {
-  'gpt-4-0613': 8192,
+  'gpt-4': 8192,
   'gpt-4-32k': 32768,
+  'gpt-4-32k-0314': 32768,
   'gpt-4-0314': 8192,
-  'gpt-3.5-turbo-0613': 4097,
-  'gpt-3.5-turbo-16k-0613': 16384,
+  'gpt-3.5-turbo': 4097,
+  'gpt-3.5-turbo-16k': 16384,
   'gpt-3.5-turbo-0301': 4097,
   'gpt-3.5-turbo-16k-0301': 16384,
   'llama-2-70b-chat': 8192,
@@ -45,6 +48,7 @@ export const modelMaxToken = {
   'code-llama-34b-instruct': 8192,
   'claude-2': 100000,
   'claude-instant': 10000,
+  'palm': 2048,
 };
 
 export const modelCost = {};
