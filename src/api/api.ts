@@ -15,9 +15,16 @@ export const getChatCompletion = async (
   if (apiKey) headers.Authorization = `Bearer ${apiKey}`;
 
   const modelInfo = await fetchModelInfo(); // Fetch model info from your API
-  const endpointToUse = determineEndpoint(modelInfo, config.model);
+  var endpoint;
+  if (modelInfo === null) {
+    endpoint =
+      import.meta.env.VITE_OPENAI_BASE_URL ||
+      'https://api.openai.com/v1/chat/completions';
+  } else {
+    endpoint = determineEndpoint(modelInfo, config.model);
+  }
 
-  const response = await fetch(endpointToUse, {
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       ...(headers as Record<string, string>),
@@ -39,11 +46,26 @@ export const getChatCompletion = async (
   return data;
 };
 
-async function fetchModelInfo(): Promise<any> {
+async function fetchModelInfo(): Promise<any | null> {
+  // Create a promise that resolves after 5 seconds
+  const timeoutPromise = new Promise<any | null>((_, reject) => {
+    setTimeout(() => {
+      reject(null); // Resolve with null after 5 seconds
+    }, 5000);
+  });
+
   // Fetch model information from your API and return it as JSON
-  const response = await fetch(`${secondary_endpoint_base}/models`);
-  if (!response.ok) throw new Error('Failed to fetch model info');
-  return response.json();
+  const fetchPromise = fetch(`${secondary_endpoint_base}/models`)
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to fetch model info');
+      return response.json();
+    })
+    .catch((error) => {
+      throw error; // Rethrow the error to be handled later
+    });
+
+  // Use Promise.race to resolve with the first completed promise (fetch or timeout)
+  return Promise.race([fetchPromise, timeoutPromise]);
 }
 
 function determineEndpoint(modelInfo: any, selectedModel: string): string {
@@ -75,7 +97,14 @@ export const getChatCompletionStream = async (
   };
   if (apiKey) headers.Authorization = `Bearer ${apiKey}`;
   const modelInfo = await fetchModelInfo(); // Fetch model info from your API
-  const endpoint = determineEndpoint(modelInfo, config.model);
+  var endpoint;
+  if (modelInfo === null) {
+    endpoint =
+      import.meta.env.VITE_OPENAI_BASE_URL ||
+      'https://api.openai.com/v1/chat/completions';
+  } else {
+    endpoint = determineEndpoint(modelInfo, config.model);
+  }
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
